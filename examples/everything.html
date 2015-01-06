@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>Flex Chat Example</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <link href="../dist/css/bootstrap-flex.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  
+  <script>
+  $(function() {
+    $('.js-left-active').on('click', function() {
+      $('.js-sidebar-left').toggleClass('flex-offcanvas-active');
+    });
+    $('.js-left-dock').on('click', function() {
+      $('.js-sidebar-left').toggleClass('flex-offcanvas-dock');
+    });
+    $('.js-right-active').on('click', function() {
+      $('.js-sidebar-right').toggleClass('flex-offcanvas-active');
+    });
+    $('.js-right-dock').on('click', function() {
+      $('.js-sidebar-right').toggleClass('flex-offcanvas-dock');
+    });
+  });
+  </script>
+</head>
+
+<body>
+  <div class="flex-box flex-box-canvas">
+    <div class="js-sidebar-left flex-box flex-box-vertical flex-1s flex-offcanvas flex-offcanvas-left flex-offcanvas-dock">
+      <div class="flex-content flex-shrink" style="background-color: red;">
+        <h2>Header</h2>
+      </div>
+      <div class="flex-content" style="background-color: cyan;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ex ut diam iaculis scelerisque. Nunc lobortis eros eu tellus suscipit finibus. Morbi arcu felis, iaculis convallis odio vestibulum, maximus eleifend purus. Mauris semper tempus interdum. Ut finibus vitae odio vitae suscipit. Mauris nec mi a mi convallis semper et vitae ex. Aliquam erat volutpat. Donec quis sem iaculis, rutrum risus sed, tincidunt urna. Nullam sit amet eros porta, rhoncus elit sed, dictum ligula. Nam ultrices turpis a urna suscipit, placerat efficitur nulla venenatis. Mauris tincidunt blandit scelerisque.</p>
+        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi venenatis fermentum ipsum vitae scelerisque. Phasellus nec tempus justo, id tincidunt leo. Donec velit nisi, luctus eu cursus vitae, fermentum eu libero. Phasellus et orci non tortor dictum molestie. Nulla a quam vel mauris tempus cursus. Vivamus consectetur luctus est ut ullamcorper. Integer eleifend sagittis nulla, a euismod leo accumsan ut. Duis ut sem in magna commodo accumsan eget et odio. Donec volutpat rutrum turpis, sed laoreet velit accumsan vel. Sed pellentesque dapibus posuere.</p>
+      </div>
+      <div class="flex-content flex-shrink" style="background-color: green;">
+        <h2>Footer</h2>
+      </div>
+    </div>
+    <div class="flex-box flex-box-vertical">
+      <div class="flex-content flex-shrink"  style="background-color: yellow;">
+        <h4>
+          <button class="js-left-dock pull-right">Dock</button>
+          <button class="js-left-active pull-right">Active</button>
+          Toggle Left Sidebar</h4>
+        </div>
+        <div class="flex-box">
+          <div class="flex-box flex-box-vertical">
+            <div class="flex-box top-half-gutter flex-children-1q" style="background-color: orange;">
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-content">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Panel heading</div>
+                  <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-content flex-shrink" style="background-color: purple;">
+              <h4>
+                Toggle Right Sidebar
+                <button class="js-right-dock">Dock</button>
+                <button class="js-right-active">Active</button>
+              </h4>
+            </div>
+          </div>
+          <div class="js-sidebar-right flex-content flex-1s-vw flex-offcanvas flex-offcanvas-right flex-offcanvas-dock" style="background-color: brown;">
+            <h1>Right Sidebar</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+  </html>

@@ -1,0 +1,48 @@
+//
+// Off-canvas classes
+// --------------------------------------------------
+
+.flex-offcanvas {
+  position: fixed;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.flex-offcanvas-left {
+  height: 100%;
+  transform: translateX(-100%);
+}
+
+.flex-offcanvas-right {
+  height: 100%;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.flex-offcanvas-active {
+  transform: translateX(0%);
+}
+
+.flex-offcanvas-dock {
+  .flex-offcanvas-active;
+  position: relative;
+  height: auto;
+}
+
+@media (min-width: @screen-sm-min) {
+  .flex-offcanvas-sm-dock {
+    .flex-offcanvas-dock;
+  };
+}
+
+@media (min-width: @screen-md-min) {
+  .flex-offcanvas-md-dock {
+    .flex-offcanvas-dock;
+  };
+}
+
+@media (min-width: @screen-lg-min) {
+  .flex-offcanvas-lg-dock{
+    .flex-offcanvas-dock;
+  };
+}
