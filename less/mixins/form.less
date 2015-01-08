@@ -1,0 +1,62 @@
+//
+// Form mixins
+// --------------------------------------------------
+
+.switchbox(@switch-height:    @line-height-computed;
+           @switch-width:     @switch-height * 1.5;
+           @switch-padding:   2px;
+           @switch-border:    2px;
+           @switch-off-color: @gray-light;
+           @switch-on-color:  @brand-success;
+           @switch-bg-color:  #fff) {
+  input[type="checkbox"] {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+    & + label {
+      display: block;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      user-select: none;
+      padding: @switch-padding;
+      width: @switch-width;
+      height: @switch-height;
+      background-color: @switch-off-color;
+      border-radius: @switch-height;
+      transition: background 0.4s;
+      margin-bottom: 0; // Undo bootstrap default
+    }
+    & + label:before,
+    & + label:after {
+      display: block;
+      position: absolute;
+      content: "";
+    }
+    & + label:before {
+      top: @switch-border;
+      left: @switch-border;
+      bottom: @switch-border;
+      right: @switch-border;
+      background-color: @switch-bg-color;
+      border-radius: @switch-height;
+      transition: background 0.4s;
+    }
+    & + label:after {
+      top: @switch-padding + @switch-border;
+      left: @switch-padding + @switch-border;
+      bottom: @switch-padding + @switch-border;
+      width: @switch-height - 2 * (@switch-padding + @switch-border);
+      background-color: @switch-off-color;
+      border-radius: @switch-height - 2 * (@switch-padding + @switch-border);
+      transition: margin 0.4s, background 0.4s;
+    }
+    &:checked + label {
+      background-color: @switch-on-color;
+    }
+    &:checked + label:after {
+      margin-left: @switch-width - @switch-height;
+      background-color: @switch-on-color;
+    }
+  }
+}

@@ -24,7 +24,7 @@
 
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  
+
   <script>
   $(function() {
     $('.js-left-active').on('click', function() {
@@ -38,6 +38,12 @@
     });
     $('.js-right-dock').on('click', function() {
       $('.js-sidebar-right').toggleClass('flex-offcanvas-dock');
+    });
+    $('.js-collapsible').on('click', function(e) {
+      e.preventDefault();
+      var $next = $(this).next();
+      var collapsed = $next.toggleClass('flex-list-collapsed').hasClass('flex-list-collapsed');
+      $(this).find('.flex-grow').next('.glyphicon').css('transition', '0.5s').css('transform', collapsed ? 'rotate(180deg)' : '');
     });
   });
   </script>
@@ -148,8 +154,68 @@
               </h4>
             </div>
           </div>
-          <div class="js-sidebar-right flex-content flex-1s-vw flex-offcanvas flex-offcanvas-right flex-offcanvas-dock" style="background-color: brown;">
+          <div class="js-sidebar-right flex-content flex-1s-vw flex-offcanvas flex-offcanvas-right flex-offcanvas-dock">
             <h1>Right Sidebar</h1>
+            <ul class="flex-list example-list">
+              <li>Text only</li>
+              <li><a href>Link</a></li>
+              <li><a href class="flex-list-item">
+                <span class="flex-grow">Link with end icon</span>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a></li>
+              <li><a href class="flex-list-item">
+                <span class="glyphicon glyphicon-book"></span>
+                <span class="flex-grow">Link with start icon</span>
+              </a></li>
+              <li><a href class="flex-list-item">
+                <span class="glyphicon glyphicon-comment"></span>
+                <span class="flex-grow">Link with both icons</span>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a></li>
+              <li><a href class="flex-list-item">
+                <span class="glyphicon glyphicon-picture"></span>
+                <span class="flex-grow">Another link with both icons and a lot of text causing wrapping</span>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a></li>
+              <li><a href class="flex-list-item">
+                <span></span>
+                <span class="flex-grow">Indented without icon</span>
+              </a></li>
+              <li>
+                <a href class="flex-list-item js-collapsible">
+                  <span class="flex-grow">Description</span><span class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+                <ul class="flex-list-collapsible">
+                  <li>Content associated with a list item can be collapsed with a few lines of JavaScript.</li>
+                </ul>
+              </li>
+              <li>Child content can be indented
+                <ul class="flex-list-indent">
+                  <li>The first item</li>
+                  <li>Item number two</li>
+                  <li>Last item</li>
+                </ul>
+              </li>
+              <li>
+                <span class="flex-list-item">
+                  <span class="glyphicon glyphicon-tasks"></span>
+                  <span class="flex-grow">Child content with start icon</span>
+                </span>
+                <ul class="flex-list-indent">
+                  <li>The first item</li>
+                  <li>Item number two</li>
+                  <li>Last item</li>
+                </ul>
+              </li>
+              <li>
+                <span class="flex-list-item">
+                  <span class="flex-grow">Toggle switch</span>
+                  <span class="switchbox">
+                    <input type="checkbox" id="text-switch">
+                    <label for="text-switch"></label>
+                  </span>
+                </span>
+            </ul>
           </div>
         </div>
       </div>
