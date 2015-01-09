@@ -21,8 +21,9 @@ gulp.task('less', function () {
     }))
     .pipe(less({
       plugins: [autoprefix, cleancss]
-    })/*.on('error', util.log)*/)
-    .pipe(gulp.dest('./dist/css'));
+    }))
+    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./docs/css'));
 });
 
 gulp.task('watch', function() {
@@ -34,5 +35,7 @@ gulp.task('webserver', function() {
     livereload: true
   });
 })
+
+
 
 gulp.task('default', ['less', 'webserver', 'watch']);
