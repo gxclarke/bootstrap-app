@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<div class="docs-sidebar flex-content flex-offcanvas flex-offcanvas-left flex-offcanvas-md-dock">
+  <h1>{{page.title}}</h1>
+  <ul class="flex-list">
+    {% if page.slug == "getting-started" %}
+      {% include nav/getting-started.html %}
+    {% elsif page.slug == "components" %}
+      {% include nav/components.html %}
+    {% endif %}
+  </ul>
+</div>
+<div class="flex-content">
+  <div class="docs-content">
+    {{content}}
+  </div>
+</div>

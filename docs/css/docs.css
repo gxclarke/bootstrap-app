@@ -1,7 +1,25 @@
+.docs-sidebar {
+  background-color: #eee;
+  max-width: 300px;
+}
+
+.docs-sidebar .flex-list {
+  padding-right: 30px;
+}
+
+.docs-content {
+  max-width: 800px;
+}
+
+.docs-content h2 {
+    padding-bottom: 1rem;
+    margin: 4rem 0 2rem;
+    border-bottom: 1px solid #eee;
+}
+
 .docs-footer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  margin-top: 10rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   border-top: 1px solid #ccc;
   color: #777;
   text-align: center;
@@ -19,4 +37,13 @@
 .docs-footer-links li {
   display: inline;
   padding: 0 0.2rem;
+}
+
+.container, .docs-content {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

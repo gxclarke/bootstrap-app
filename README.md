@@ -1,4 +1,4 @@
-bootstrap-flex
+Bootstrap App Framework
 ==============
 
-Bootstrap enhancements using flex box.
+Bootstrap enhancements for creating responsive web applications.
