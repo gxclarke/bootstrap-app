@@ -2,7 +2,7 @@
   "name": "boostrap-flex",
   "version": "0.1.0",
   "devDependencies": {
-    "gulp": "^3.8.10",
+    "gulp": "~3.8.10",
     "gulp-connect": "^2.2.0",
     "gulp-debug": "^2.0.0",
     "gulp-less": "^2.0.1",

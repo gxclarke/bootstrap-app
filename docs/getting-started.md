@@ -19,7 +19,7 @@ This is super easy. Just download the single CSS file, reference it in your mark
 
 Just like Bootstrap, the Bootstrap App Framework is built with Less, a pre-processor for CSS.
 
-<a href="{{ site.dist }}/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download CSS</a>
+<a href="{{ site.dist }}/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download Source</a>
 
 Lorem ipsum dolor
  sit amet, consectetur adipiscing elit. Nullam aliquam et nisl vitae mollis. Vivamus vel ipsum convallis nibh dapibus rutrum. Donec ullamcorper augue a malesuada cursus. Sed in nisi dignissim, dictum turpis in, vehicula sapien. Sed vel sem pretium, auctor dui sed, vestibulum tortor. Vivamus ut arcu tortor. Praesent vitae dolor sit amet nunc gravida accumsan ac sit amet diam.
