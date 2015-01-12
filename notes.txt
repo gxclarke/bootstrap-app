@@ -6,3 +6,5 @@ http://jekyll-windows.juthilo.com/
 npm install -global gulp
 In the project folder to install remaining dev dependencies:
  - run npm install
+
+ 
