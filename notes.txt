@@ -3,6 +3,6 @@ http://jekyll-windows.juthilo.com/
  - DevToolkit (may need to manually add entry into config.yml)
  - Cert fix: https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem
  - Jekyll
-npm install -global gulp
+npm install --global gulp
 In the project folder to install remaining dev dependencies:
  - run npm install
