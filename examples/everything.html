@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../favicon.ico">
 
-  <title>Bootstrap Flex Example</title>
+  <title>Bootstrap App Example</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -148,9 +148,9 @@
               </h4>
             </div>
           </div>
-          <div class="js-sidebar-right flex-content flex-1s-vw flex-offcanvas flex-offcanvas-right flex-offcanvas-dock">
+          <div class="js-sidebar-right flex-content flex-1s-vw flex-offcanvas flex-offcanvas-right flex-offcanvas-dock" style="min-width: 300px;">
             <h1>Right Sidebar</h1>
-            <ul class="flex-list example-list">
+            <ul class="flex-list">
               <li>Text only</li>
               <li><a href>Link</a></li>
               <li><a href class="flex-list-item">
@@ -204,11 +204,44 @@
               <li>
                 <span class="flex-list-item">
                   <span class="flex-grow">Toggle switch</span>
-                  <span class="switchbox">
+                  <span class="switch">
                     <input type="checkbox" id="text-switch">
                     <label for="text-switch"></label>
                   </span>
                 </span>
+              </li>
+              <li class="flex-list-item">
+                <span class="flex-grow">Apples</span>
+                <span class="switch">
+                  <input type="radio" name="fruit" id="fruit-apples" checked>
+                  <label for="fruit-apples"></label>
+                </span>
+              </li>
+              <li class="flex-list-item">
+                <span class="flex-grow">Bananas</span>
+                <span class="switch">
+                  <input type="radio" name="fruit" id="fruit-bananas">
+                  <label for="fruit-bananas"></label>
+                </span>
+              </li>
+              <li>Preferred color
+                <ul class="flex-list-indent">
+                  <li class="flex-list-item">
+                    <span class="flex-grow">Red</span>
+                    <span class="switch">
+                      <input type="radio" name="color" id="color-red" checked>
+                      <label for="color-red"></label>
+                    </span>
+                  </li>
+                  <li class="flex-list-item">
+                    <span class="flex-grow">Blue</span>
+                    <span class="switch">
+                      <input type="radio" name="color" id="color-blue">
+                      <label for="color-blue"></label>
+                    </span>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
