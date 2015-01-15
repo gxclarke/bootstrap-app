@@ -4,15 +4,13 @@ layout: default
 
 <div class="docs-sidebar flex-content flex-offcanvas flex-offcanvas-left flex-offcanvas-md-dock">
   <h1>{{page.title}}</h1>
-  <ul class="flex-list">
-    {% if page.slug == "getting-started" %}
-      {% markdown nav/getting-started.md %}
-    {% elsif page.slug == "components" %}
-      {% markdown nav/components.md %}
-    {% elsif page.slug == "reference" %}
-      {% markdown nav/components.md %}
-    {% endif %}
-  </ul>
+  {% if page.slug == "getting-started" %}
+    {% include nav/getting-started.html %}
+  {% elsif page.slug == "components" %}
+    {% include nav/components.html %}
+  {% elsif page.slug == "reference" %}
+    {% include nav/components.html %}
+  {% endif %}
 </div>
 <div class="flex-content">
   <div class="docs-content">
