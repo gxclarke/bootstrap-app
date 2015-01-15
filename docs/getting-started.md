@@ -5,33 +5,54 @@ permalink: /getting-started/
 slug: getting-started
 ---
 
-## Download
-The Bootstrap App Framework has a few easy ways to quickly get started depending on how you want to use it within your project:
+## <a name="download"></a>Download
+The Bootstrap App Framework has a few easy ways to quickly get started depending
+on how you want to use it within your project:
 {: .lead }
 
 ### Download CSS
 
-This is super easy. Just download the single CSS file, reference it in your markup, and you're done.
+This is super easy. Just download the single CSS file, reference it in your
+markup, and you're done.
 
 <a href="{{ site.dist }}/css/bootstrap-app.css" class="btn btn-lg btn-primary">Download CSS</a>
 
 ### Download Less Source
 
-Just like Bootstrap, the Bootstrap App Framework is built with Less, a pre-processor for CSS.
+Just like Bootstrap, the Bootstrap App Framework is built with Less, a
+pre-processor for CSS.
 
-<a href="{{ site.dist }}/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download Source</a>
+<a href="{{ site.dist }}/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download Less</a>
 
-Lorem ipsum dolor
- sit amet, consectetur adipiscing elit. Nullam aliquam et nisl vitae mollis. Vivamus vel ipsum convallis nibh dapibus rutrum. Donec ullamcorper augue a malesuada cursus. Sed in nisi dignissim, dictum turpis in, vehicula sapien. Sed vel sem pretium, auctor dui sed, vestibulum tortor. Vivamus ut arcu tortor. Praesent vitae dolor sit amet nunc gravida accumsan ac sit amet diam.
+The `bootstrap-app.less` file imports all the other Less files for generating
+the `bootstrap-app.css` file.
 
-## Using With or Without Bootstrap
+If you are  compiling Bootstrap from its Less file, then you should copy the
+contents of `bootstrap-app.less` into one of your existing Less file, excluding
+the `bootstrap-variable.less` file, since those will already be defined.
 
+## <a name="using-without-bootstrap"></a>Using Without Bootstrap
 
+Bootstrap App follows the conventions of Bootstrap, references Bootstrap Less
+variables, and includes styling where necessary to ensure Bootstrap App
+components work well existing Bootstrap components and styles. However, use of
+Bootstrap App is entirely optional. Regardless of whether you are downloading
+the CSS or the Less source files, Bootstrap App will work correctly even when
+Bootstrap is not included.
 
-## Browser Compatibility
+## <a name="browser-compat"></a>Browser Compatibility
 
-{% highlight js %}
-function test() {
-  console.log("notice the blank line before this function?");
-}
-{% endhighlight %}
+Bootstrap App uses CSS3 Flex Box capabilities to enable fine grained control
+over the layout of items within a container. Since Flex Box is a relatively new
+specification it is not supported by older browsers. Flex Box has also
+undergone some syntax changes since its original proposal, so some older
+browsers that included Flex Box support did so using a different syntax
+than the final specification. Bootstrap App includes support for the older
+syntaxes to maximize browser compatibility.
+
+The minimum supported version of Internet Explorer is IE 10. Other browsers
+update themselves automatically, and we support the latest versions of those.
+Opera Mini is not supported.
+
+See [caniuse.com](http://caniuse.com/#feat=flexbox) for more information on
+Flex Box support.
