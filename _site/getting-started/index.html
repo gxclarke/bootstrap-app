@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Getting Started &middot; Bootstrap App Framework</title>
+  <meta name="description" content="The Bootstrap App Framework: Build responsive web-based applications using Bootstrap.
+">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <link href="/css/pygments-manni.css" rel="stylesheet">
+  <link href="/css/bootstrap-app.css" rel="stylesheet">
+
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="/css/docs.css">
+  <link rel="canonical" href="http://getbootstrapapp.com/getting-started/">
+  <link rel="alternate" type="application/rss+xml" title="Bootstrap App Framework" href="http://getbootstrapapp.com/feed.xml" />
+</head>
+
+
+  <body>
+
+    <div class="flex-box flex-box-canvas">
+      <div class="flex-box flex-box-vertical">
+        <div class="flex-content flex-shrink">
+          <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#docs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Bootstrap App Framework</a>
+    </div>
+    <div class="collapse navbar-collapse" id="docs-navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/getting-started/">Getting Started</a></li>
+        <li><a href="/components/">Components</a></li>
+        <li><a href="/reference/">Reference</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        </div>
+        <div class="flex-box">
+          <div class="docs-sidebar flex-content flex-offcanvas flex-offcanvas-left flex-offcanvas-md-dock">
+  <h1>Getting Started</h1>
+  <ul class="flex-list">
+    
+      <ul>
+  <li><a href="#download">Download</a></li>
+  <li><a href="#using-without-bootstrap">Using without Bootstrap</a></li>
+  <li><a href="#browser-compat">Browser Compatibility</a></li>
+</ul>
+
+    
+  </ul>
+</div>
+<div class="flex-content">
+  <div class="docs-content">
+    <h2 id="a-namedownloadadownload"><a name="download"></a>Download</h2>
+<p class="lead">The Bootstrap App Framework has a few easy ways to quickly get started depending
+on how you want to use it within your project:</p>
+
+<h3 id="download-css">Download CSS</h3>
+
+<p>This is super easy. Just download the single CSS file, reference it in your
+markup, and you’re done.</p>
+
+<p><a href="https://github.com/gxclarke/bootstrap-app/tree/master/dist/css/bootstrap-app.css" class="btn btn-lg btn-primary">Download CSS</a></p>
+
+<h3 id="download-less-source">Download Less Source</h3>
+
+<p>Just like Bootstrap, the Bootstrap App Framework is built with Less, a
+pre-processor for CSS.</p>
+
+<p><a href="https://github.com/gxclarke/bootstrap-app/tree/master/dist/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download Less</a></p>
+
+<p>The <code>bootstrap-app.less</code> file imports all the other Less files for generating
+the <code>bootstrap-app.css</code> file.</p>
+
+<p>If you are  compiling Bootstrap from its Less file, then you should copy the
+contents of <code>bootstrap-app.less</code> into one of your existing Less file, excluding
+the <code>bootstrap-variable.less</code> file, since those will already be defined.</p>
+
+<h2 id="a-nameusing-without-bootstrapausing-without-bootstrap"><a name="using-without-bootstrap"></a>Using Without Bootstrap</h2>
+
+<p>Bootstrap App follows the conventions of Bootstrap, references Bootstrap Less
+variables, and includes styling where necessary to ensure Bootstrap App
+components work well existing Bootstrap components and styles. However, use of
+Bootstrap App is entirely optional. Regardless of whether you are downloading
+the CSS or the Less source files, Bootstrap App will work correctly even when
+Bootstrap is not included.</p>
+
+<h2 id="a-namebrowser-compatabrowser-compatibility"><a name="browser-compat"></a>Browser Compatibility</h2>
+
+<p>Bootstrap App uses CSS3 Flex Box capabilities to enable fine grained control
+over the layout of items within a container. Since Flex Box is a relatively new
+specification it is not supported by older browsers. Flex Box has also
+undergone some syntax changes since its original proposal, so some older
+browsers that included Flex Box support did so using a different syntax
+than the final specification. Bootstrap App includes support for the older
+syntaxes to maximize browser compatibility.</p>
+
+<p>The minimum supported version of Internet Explorer is IE 10. Other browsers
+update themselves automatically, and we support the latest versions of those.
+Opera Mini is not supported.</p>
+
+<p>See <a href="http://caniuse.com/#feat=flexbox">caniuse.com</a> for more information on
+Flex Box support.</p>
+
+  </div>
+</div>
+
+        </div>
+        <div class="flex-content flex-shrink flex-content-collapse">
+          <div class="docs-footer">
+  <div class="container">
+    <ul class="list-inline">
+      <li><a href="/">Home</a></li>
+      <li>·</li>
+      <li><a href="/getting-started/">Getting Started</a></li>
+      <li>·</li>
+      <li><a href="/components/">Components</a></li>
+      <li>·</li>
+      <li><a href="/reference/">Reference</a></li>
+      <li>·</li>
+      <li><a href="https://github.com/gxclarke/bootstrap-app">GitHub</a></li>
+      <li>·</li>
+      <li><a href="https://github.com/gxclarke/bootstrap-app/blob/master/LICENSE">License</a></li>
+    </ul>
+  </div>
+</div>
+
+        </div>
+      </div>
+      <div class="flex-box flex-box-vertical flex-1s flex-offcanvas flex-offcanvas-right">
+        Demo sidebar
+      </div>
+    </div>
+
+  </body>
+
+</html>
