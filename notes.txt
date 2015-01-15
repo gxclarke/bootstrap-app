@@ -10,3 +10,8 @@ In the project folder to install the dev dependencies:
 To compile the main site and start a web server: gulp
 
 To compile the docs and start the jekyll web server, from the docs folder: jekyll serve
+
+To automatically update the gh-pages branch from the /docs folder:
+ - Follow these general instructions: http://brettterpstra.com/2012/09/26/github-tip-easily-sync-your-master-to-github-pages/
+ - Change the first push to specify the docs folder:
+   push = +refs/heads/master/docs:refs/heads/gh-pages
