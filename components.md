@@ -41,7 +41,7 @@ container.
 Notice that the `.flex-content` class includes margins that behavior exactly
 the same way as the standard Bootstrap grid columns within a row.
 
-### Automatically adjusting widths
+### Automatically Adjusting Widths
 
 By default, the `.flex-box` class uses a horizontal layout for the children
 items, and the `flex-content` elements automatically expand equally to fill
@@ -70,7 +70,7 @@ the entire height of the browser window. Add the `.flex-grid-canvas` class
 to your top-most `.flex-box` to achieve this.
 
 <div class="docs-example">
-  <a class="btn btn-default" href="/ex-flex-box-canvas" target="_blank">View in new window</a>
+  <a class="btn btn-default" href="/ex-flex-box-canvas" target="&#95;blank">View in new window</a>
 </div>
 
 {% highlight html %}
@@ -79,6 +79,9 @@ to your top-most `.flex-box` to achieve this.
   <div class="flex-content"></div>
 </div>
 {% endhighlight %}
+
+### Orientation
+
 
 
 ## Off-Canvas
