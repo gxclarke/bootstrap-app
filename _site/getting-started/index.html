@@ -1,0 +1,50 @@
+<h2 id="a-namedownloadadownload"><a name="download"></a>Download</h2>
+<p class="lead">The Bootstrap App Framework has a few easy ways to quickly get started depending
+on how you want to use it within your project:</p>
+
+<h3 id="download-css">Download CSS</h3>
+
+<p>This is super easy. Just download the single CSS file, reference it in your
+markup, and you’re done.</p>
+
+<p><a href="/css/bootstrap-app.css" class="btn btn-lg btn-primary">Download CSS</a></p>
+
+<h3 id="download-less-source">Download Less Source</h3>
+
+<p>Just like Bootstrap, the Bootstrap App Framework is built with Less, a
+pre-processor for CSS.</p>
+
+<p><a href="/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download Less</a></p>
+
+<p>The <code>bootstrap-app.less</code> file imports all the other Less files for generating
+the <code>bootstrap-app.css</code> file.</p>
+
+<p>If you are  compiling Bootstrap from its Less file, then you should copy the
+contents of <code>bootstrap-app.less</code> into one of your existing Less file, excluding
+the <code>bootstrap-variable.less</code> file, since those will already be defined.</p>
+
+<h2 id="a-nameusing-without-bootstrapausing-without-bootstrap"><a name="using-without-bootstrap"></a>Using Without Bootstrap</h2>
+
+<p>Bootstrap App follows the conventions of Bootstrap, references Bootstrap Less
+variables, and includes styling where necessary to ensure Bootstrap App
+components work well existing Bootstrap components and styles. However, use of
+Bootstrap App is entirely optional. Regardless of whether you are downloading
+the CSS or the Less source files, Bootstrap App will work correctly even when
+Bootstrap is not included.</p>
+
+<h2 id="a-namebrowser-compatabrowser-compatibility"><a name="browser-compat"></a>Browser Compatibility</h2>
+
+<p>Bootstrap App uses CSS3 Flex Box capabilities to enable fine grained control
+over the layout of items within a container. Since Flex Box is a relatively new
+specification it is not supported by older browsers. Flex Box has also
+undergone some syntax changes since its original proposal, so some older
+browsers that included Flex Box support did so using a different syntax
+than the final specification. Bootstrap App includes support for the older
+syntaxes to maximize browser compatibility.</p>
+
+<p>The minimum supported version of Internet Explorer is IE 10. Other browsers
+update themselves automatically, and we support the latest versions of those.
+Opera Mini is not supported.</p>
+
+<p>See <a href="http://caniuse.com/#feat=flexbox">caniuse.com</a> for more information on
+Flex Box support.</p>

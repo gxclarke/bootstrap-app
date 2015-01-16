@@ -1,13 +1,8 @@
-Install Ruby
- - http://rubyinstaller.org/downloads/
+http://jekyll-windows.juthilo.com/
+ - Install Ruby
  - DevToolkit (may need to manually add entry into config.yml)
  - Cert fix: https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem
-
-Jekyll and dependencies
- - https://help.github.com/articles/using-jekyll-with-pages/
-
-Pygments (requires Python - don't use v3)
- - http://jekyll-windows.juthilo.com/3-syntax-highlighting/ (not rouge, you need pygments)
+ - gem install jekyll
 
 In the project folder to install the dev dependencies:
  - run npm install
@@ -15,5 +10,3 @@ In the project folder to install the dev dependencies:
 To compile the main site and start a web server: gulp
 
 To compile the docs and start the jekyll web server, from the docs folder: jekyll serve
-
-To update gh-pages branch: gulp deploy

@@ -1,3 +1,0 @@
-* Grid
-* Off-Canvas
-* List

@@ -1,0 +1,110 @@
+<h2 id="grid">Grid</h2>
+
+<p class="lead">The grid provides a new responsive method for laying out sections of a page
+that provides more capabilities than the existing Bootstrap grid. It supports
+both horizontal and vertical organization of items, has independently-scrolling
+areas, and has automatically expanding items. It integrates with Bootstrap’s
+existing <code>.container</code> class.</p>
+
+<h3 id="boxes-and-items">Boxes and Items</h3>
+
+<p>Boxes are the building blocks of a page layout. The <code>.flex-box</code> class
+establishes a flexible container that occupies the full width of its
+parent element.</p>
+
+<p>Within it, the <code>.flex-content</code> class is
+applied to children elements to establish flexible behavior within the
+container.</p>
+
+<div class="docs-example">
+  <div class="flex-box">
+    <div class="flex-content"></div>
+    <div class="flex-content"></div>
+  </div>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<p>Notice that the <code>.flex-content</code> class includes margins that behavior exactly
+the same way as the standard Bootstrap grid columns within a row.</p>
+
+<h3 id="filling-the-canvas">Filling the Canvas</h3>
+
+<p>In most cases, you will want to start with a main grid layout that fills
+the entire height of the browser window. Add the <code>.flex-grid-canvas</code> class
+to your top-most <code>.flex-box</code> to achieve this.</p>
+
+<div class="docs-example">
+  <a class="btn btn-default" href="/ex-flex-box-canvas" target="&#95;blank">View in new window</a>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box flex-box-canvas&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<h3 id="automatic-sizing">Automatic Sizing</h3>
+
+<p>By default, the <code>.flex-box</code> class uses a horizontal layout for the children
+items, and the <code>flex-content</code> elements automatically expand equally to fill
+the available space. If the content within a <code>.flex-content</code> item requires
+more space than is provided through the equal distribution, the grid
+automatically adjusts proportions to accommodate this.</p>
+
+<div class="docs-example">
+  <div class="flex-box">
+    <div class="flex-content"></div>
+    <div class="flex-content docs-annotation" style="min-width: 400px;"><p class="text-info">I need at least 400 pixels</p></div>
+    </div>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span> <span class="na">style=</span><span class="s">&quot;min-width: 400px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<p>You can also specify that a child item should only be as large as is needed for
+its content. Specify <code>.flex-shrink</code> to apply this.</p>
+
+<div class="docs-example">
+  <div class="flex-box">
+    <div class="flex-content"></div>
+    <div class="flex-content flex-shrink docs-annotation"><p class="text-info">I'm shrunk to fit</p></div>
+    </div>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-shrink&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<h3 id="orientation">Orientation</h3>
+
+<p>To change organize children items vertically, add <code>.flex-box-vertical</code>.</p>
+
+<div class="docs-example">
+  <div class="flex-box flex-box-vertical">
+    <div class="flex-content"></div>
+    <div class="flex-content"></div>
+  </div>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box flex-box-vertical&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<h3 id="nesting">Nesting</h3>
+
+<h3 id="manual-sizing">Manual Sizing</h3>
+
+<h2 id="off-canvas">Off-Canvas</h2>
+
+<p>asdfaj skfjadsfjdfjfjfjjf  fd dfdfdf df</p>
+
+<h2 id="list">List</h2>
+
+<p>asdfaj skfjadsfjdfjfjfjjf  fd dfdfdf df</p>
