@@ -41,28 +41,6 @@ container.
 Notice that the `.flex-content` class includes margins that behavior exactly
 the same way as the standard Bootstrap grid columns within a row.
 
-### Automatically Adjusting Widths
-
-By default, the `.flex-box` class uses a horizontal layout for the children
-items, and the `flex-content` elements automatically expand equally to fill
-the available space. If the content within a `.flex-content` item requires
-more space than is provided through the equal distribution, the grid
-automatically adjusts proportions to accommodate this.
-
-<div class="docs-example">
-  <div class="flex-box">
-    <div class="flex-content"></div>
-    <div class="flex-content" style="min-width: 400px;"></div>
-    </div>
-</div>
-
-{% highlight html %}
-<div class="flex-box">
-  <div class="flex-content"></div>
-  <div class="flex-content" style="min-width: 400px;"></div>
-</div>
-{% endhighlight %}
-
 ### Filling the Canvas
 
 In most cases, you will want to start with a main grid layout that fills
@@ -80,7 +58,73 @@ to your top-most `.flex-box` to achieve this.
 </div>
 {% endhighlight %}
 
+### Automatic Sizing
+
+By default, the `.flex-box` class uses a horizontal layout for the children
+items, and the `flex-content` elements automatically expand equally to fill
+the available space. If the content within a `.flex-content` item requires
+more space than is provided through the equal distribution, the grid
+automatically adjusts proportions to accommodate this.
+
+<div class="docs-example">
+  <div class="flex-box">
+    <div class="flex-content"></div>
+    <div class="flex-content"></div>
+    <div class="flex-content" style="min-width: 400px;"><code>min-width: 400px</code></div>
+    </div>
+</div>
+
+{% highlight html %}
+<div class="flex-box">
+  <div class="flex-content"></div>
+  <div class="flex-content"></div>
+  <div class="flex-content" style="min-width: 400px;"></div>
+</div>
+{% endhighlight %}
+
+You can also specify that a child item should only be as large as is needed for
+its content. Specify `.flex-shrink` to apply this.
+
+<div class="docs-example">
+  <div class="flex-box">
+    <div class="flex-content"></div>
+    <div class="flex-content"></div>
+    <div class="flex-content flex-shrink"><code>.flex-shrink</code></div>
+  </div>
+</div>
+
+{% highlight html %}
+<div class="flex-box">
+  <div class="flex-content"></div>
+  <div class="flex-content"></div>
+  <div class="flex-content flex-shrink"></div>
+</div>
+{% endhighlight %}
+
+
 ### Orientation
+
+To change organize children items vertically, add `.flex-box-vertical`.
+
+<div class="docs-example">
+  <div class="flex-box flex-box-vertical">
+    <div class="flex-content"></div>
+    <div class="flex-content"></div>
+  </div>
+</div>
+
+{% highlight html %}
+<div class="flex-box flex-box-vertical">
+  <div class="flex-content"></div>
+  <div class="flex-content"></div>
+</div>
+{% endhighlight %}
+
+### Nesting
+
+
+### Manual Sizing
+
 
 
 
