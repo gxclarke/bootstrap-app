@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../favicon.ico">
 
-  <title>Bootstrap Flex Example</title>
+  <title>Bootstrap App Example</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -39,13 +39,17 @@
       var collapsed = $next.toggleClass('flex-list-collapsed').hasClass('flex-list-collapsed');
       $(this).find('.flex-grow').next('.glyphicon').css('transition', '0.5s').css('transform', collapsed ? 'rotate(180deg)' : '');
     });
+
+    $(window).on('webkitTransitionStart', function(e) {
+      console.log(e.propertyName);
+    });
   });
   </script>
 </head>
 
 <body>
   <div class="flex-box flex-box-canvas">
-    <div class="js-sidebar-left flex-box flex-box-vertical flex-1s flex-offcanvas flex-offcanvas-left flex-offcanvas-dock">
+    <div class="js-sidebar-left flex-box flex-box-vertical flex-2 flex-offcanvas flex-offcanvas-left flex-offcanvas-dock">
       <div class="flex-content flex-shrink" style="background-color: red;">
         <h2>Header</h2>
       </div>
@@ -66,7 +70,7 @@
         </div>
         <div class="flex-box">
           <div class="flex-box flex-box-vertical">
-            <div class="flex-box top-half-gutter flex-children-1q" style="background-color: orange;">
+            <div class="flex-box top-half-gutter flex-children-3" style="background-color: orange;">
               <div class="flex-content">
                 <div class="panel panel-default">
                   <div class="panel-heading">Panel heading</div>
@@ -148,7 +152,7 @@
               </h4>
             </div>
           </div>
-          <div class="js-sidebar-right flex-content flex-1s-vw flex-offcanvas flex-offcanvas-right flex-offcanvas-dock">
+          <div class="js-sidebar-right flex-content flex-2-vw flex-offcanvas flex-offcanvas-right flex-offcanvas-dock">
             <h1>Right Sidebar</h1>
             <ul class="flex-list example-list">
               <li>Text only</li>
@@ -201,10 +205,42 @@
                   <li>Last item</li>
                 </ul>
               </li>
+              <li class="flex-list-item">
+                <span class="flex-grow">Apples</span>
+                <span class="switch">
+                  <input type="radio" name="fruit" id="fruit-apples" checked>
+                  <label for="fruit-apples"></label>
+                </span>
+              </li>
+              <li class="flex-list-item">
+                <span class="flex-grow">Bananas</span>
+                <span class="switch">
+                  <input type="radio" name="fruit" id="fruit-bananas">
+                  <label for="fruit-bananas"></label>
+                </span>
+              </li>
+              <li>Preferred color
+                <ul class="flex-list-indent">
+                  <li class="flex-list-item">
+                    <span class="flex-grow">Red</span>
+                    <span class="switch">
+                      <input type="radio" name="color" id="color-red" checked>
+                      <label for="color-red"></label>
+                    </span>
+                </li>
+                  <li class="flex-list-item">
+                    <span class="flex-grow">Blue</span>
+                    <span class="switch">
+                      <input type="radio" name="color" id="color-blue">
+                      <label for="color-blue"></label>
+                    </span>
+                  </li>
+                </ul>
+              </li>
               <li>
                 <span class="flex-list-item">
                   <span class="flex-grow">Toggle switch</span>
-                  <span class="switchbox">
+                  <span class="switch">
                     <input type="checkbox" id="text-switch">
                     <label for="text-switch"></label>
                   </span>
