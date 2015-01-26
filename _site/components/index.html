@@ -15,12 +15,53 @@
   <link href="/css/pygments-manni.css" rel="stylesheet">
   <link href="/css/bootstrap-app.css" rel="stylesheet">
 
-  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
+  
   <link rel="stylesheet" href="/css/docs.css">
-  <link rel="canonical" href="http://getbootstrapapp.com/components/">
-  <link rel="alternate" type="application/rss+xml" title="Bootstrap App Framework" href="http://getbootstrapapp.com/feed.xml" />
+  <link rel="canonical" href="http://getbootstrapapp.com//components/">
+  <link rel="alternate" type="application/rss+xml" title="Bootstrap App Framework" href="http://getbootstrapapp.com//feed.xml" />
+
+  <script>
+  $(function () {
+    function isScrolledIntoView(elem) {
+      var docViewTop = $(window).scrollTop();
+      var docViewBottom = docViewTop + $(window).height();
+
+      var elemTop = $(elem).offset().top;
+      var elemBottom = elemTop + $(elem).height();
+
+      return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+
+    var $scrollContainer = $('.docs-content').closest('.flex-content');
+
+    $scrollContainer.scroll(function () {
+      var scrollHeight = $(this).height();
+      var $a = $('.docs-sidebar a');
+      $a.closest('li').removeClass('active');
+
+      var match = null;
+      $a.each(function () {
+        var $target = $($(this).attr('href'));
+        var elemTop = $target.offset().top;
+        var elemBottom = elemTop + $target.height();
+        if (elemTop >= 0 && elemBottom <= scrollHeight) {
+          match = this;
+          return false;
+        }
+        else if (elemBottom > scrollHeight) {
+          return false;
+        }
+        else
+          match = this;
+      });
+      if (match)
+        $(match).closest('li').addClass('active');
+    })
+  })
+  </script>
 </head>
 
 
@@ -56,24 +97,46 @@
   <h1>Components</h1>
   
     <ul class="flex-list">
-  <li>Grid</li>
+  <li><a href="#grid">Flex Grid</a>
+    <ul class="flex-list-indent">
+      <li><a href="#grid-concepts">Concepts</a></li>
+      <li><a href="#grid-canvas">Filling the Canvas</a></li>
+      <li><a href="#grid-auto-sizing">Automatic Sizing</a></li>
+      <li><a href="#grid-orientation">Orientation</a></li>
+      <li><a href="#grid-nesting">Nesting</a></li>
+      <li><a href="#grid-manual-sizing">Manual Sizing</a></li>
+      <li><a href="#grid-wrapping">Wrapping Items</a></li>
+    </ul>
+  </li>
   <li>Off-Canvas</li>
-  <li>List</li>
+  <li><a href="#list">Flex List</a>
+    <ul class="flex-list-indent">
+      <li><a href="#list-basic">Basic Syntax</a></li>
+      <li><a href="#list-app-prepend">Appending/Prepending Items</a></li>
+      <li><a href="#list-nesting">Nesting</a></li>
+      <li><a href="#list-collapsible">Collapsible Children</a></li>
+      <li><a href="#list-widgets">Form Widgets</a></li>
+    </ul>
+  </li>
 </ul>
 
   
 </div>
 <div class="flex-content">
   <div class="docs-content">
-    <h2 id="grid">Grid</h2>
+    <div id="grid"></div>
 
-<p class="lead">The grid provides a new responsive method for laying out sections of a page
+<h2 id="flex-grid">Flex Grid</h2>
+
+<p class="lead">The flex grid provides a new responsive method for laying out sections of a page
 that provides more capabilities than the existing Bootstrap grid. It supports
 both horizontal and vertical organization of items, has independently-scrolling
 areas, and has automatically expanding items. It integrates with Bootstrap’s
 existing <code>.container</code> class.</p>
 
-<h3 id="boxes-and-items">Boxes and Items</h3>
+<div id="grid-concepts"></div>
+
+<h3 id="concepts">Concepts</h3>
 
 <p>Boxes are the building blocks of a page layout. The <code>.flex-box</code> class
 establishes a flexible container that occupies the full width of its
@@ -85,18 +148,23 @@ container.</p>
 
 <div class="docs-example">
   <div class="flex-box">
-    <div class="flex-content"></div>
-    <div class="flex-content"></div>
+    <div class="flex-content">1</div>
+    <div class="flex-content">2</div>
   </div>
 </div>
 
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span></code></pre></div>
 
 <p>Notice that the <code>.flex-content</code> class includes margins that behavior exactly
-the same way as the standard Bootstrap grid columns within a row.</p>
+the same way as the standard Bootstrap grid columns within a row. You can
+optionally disable this behavior by adding the <code>.flex-content-collapse</code> class.
+You can also apply it to the parent <code>.flex-box</code> instead with the
+<code>.flex-box-collapse</code> class.</p>
+
+<div id="grid-canvas"></div>
 
 <h3 id="filling-the-canvas">Filling the Canvas</h3>
 
@@ -113,6 +181,8 @@ to your top-most <code>.flex-box</code> to achieve this.</p>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span></code></pre></div>
 
+<div id="grid-auto-sizing"></div>
+
 <h3 id="automatic-sizing">Automatic Sizing</h3>
 
 <p>By default, the <code>.flex-box</code> class uses a horizontal layout for the children
@@ -125,7 +195,7 @@ automatically adjusts proportions to accommodate this.</p>
   <div class="flex-box">
     <div class="flex-content"></div>
     <div class="flex-content"></div>
-    <div class="flex-content" style="min-width: 400px;"><code>min-width: 400px</code></div>
+    <div class="flex-content" style="min-width: 400px;">min-width: 400px</div>
     </div>
 </div>
 
@@ -142,15 +212,17 @@ its content. Specify <code>.flex-shrink</code> to apply this.</p>
   <div class="flex-box">
     <div class="flex-content"></div>
     <div class="flex-content"></div>
-    <div class="flex-content flex-shrink"><code>.flex-shrink</code></div>
+    <div class="flex-content flex-shrink">.flex-shrink</div>
   </div>
 </div>
 
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-shrink&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-shrink&quot;</span><span class="nt">&gt;</span>.flex-shrink<span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<div id="grid-orientation"></div>
 
 <h3 id="orientation">Orientation</h3>
 
@@ -168,17 +240,668 @@ its content. Specify <code>.flex-shrink</code> to apply this.</p>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span></code></pre></div>
 
+<p>Additional classes are available to automatically change the orientation for
+different viewport sizes. Bootstrap App uses the same breakpoints as Bootstrap’s
+grid system, along with a similar naming convention:</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Horizontal</th>
+      <th>Vertical</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Extra small devices</td>
+      <td> </td>
+      <td><code>.flex-box-vertical</code></td>
+    </tr>
+    <tr>
+      <td>Small devices</td>
+      <td><code>.flex-box-sm-horizontal</code></td>
+      <td><code>.flex-box-sm-vertical</code></td>
+    </tr>
+    <tr>
+      <td>Medium devices</td>
+      <td><code>.flex-box-md-horizontal</code></td>
+      <td><code>.flex-box-md-vertical</code></td>
+    </tr>
+    <tr>
+      <td>Large devices</td>
+      <td><code>.flex-box-lg-horizontal</code></td>
+      <td><code>.flex-box-lg-vertical</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="grid-nesting"></div>
+
 <h3 id="nesting">Nesting</h3>
 
+<p>Flex boxes can be nested to create arbitrarily complex layouts. The key point
+to remember is that the <code>.flex-box</code> class creates a container, whereas the
+<code>.flex-content</code> does not.</p>
+
+<div class="docs-example">
+  <div class="flex-box">
+    <div class="flex-box flex-box-vertical">
+      <div class="flex-content">A</div>
+      <div class="flex-content">B</div>
+    </div>
+    <div class="flex-content">C</div>
+  </div>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box flex-box-vertical&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>A<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>B<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>C<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<div id="grid-manual-sizing"></div>
+
 <h3 id="manual-sizing">Manual Sizing</h3>
+
+<p>Flex Grid provides sizing classes that work similar to the Bootstrap grid
+12-column system. However, flex grid sizing classes work for both horizontal
+and vertical orientations.</p>
+
+<p>Sizing classes can be applied to elements that have either
+the <code>.flex-box</code> or <code>.flex-content</code> class.</p>
+
+<p>The main classes for specifying item sizes are as follows.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Class Name</th>
+      <th>Size within Container</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.flex-1</code></td>
+      <td>One twelth</td>
+    </tr>
+    <tr>
+      <td><code>.flex-2</code></td>
+      <td>Two twelths (one sixth)</td>
+    </tr>
+    <tr>
+      <td><code>.flex-3</code></td>
+      <td>Three twelths (one quarter)</td>
+    </tr>
+    <tr>
+      <td><code>.flex-4</code></td>
+      <td>Four twelths (one third)</td>
+    </tr>
+    <tr>
+      <td><code>.flex-5</code></td>
+      <td>Five twelths</td>
+    </tr>
+    <tr>
+      <td><code>.flex-6</code></td>
+      <td>Six twelths (one half)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There is no need to provide sizing classes beyond 6, because the default
+behavior of items is to fill the remaining space.</p>
+
+<p>Similarly to the Bootstrap grid, the sizing classes define a size that is
+relative to its containing element.</p>
+
+<p>With Flex Grid, you also have the ability to defining sizes relative to the
+viewport when working with a horizontal orientation. This is especially useful
+with nested layouts. Viewport based sizing classes add a <code>-vw</code> prefix:</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Class Name</th>
+      <th>Width of Viewport</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.flex-1-vw</code></td>
+      <td>One twelth</td>
+    </tr>
+    <tr>
+      <td><code>.flex-2-vw</code></td>
+      <td>Two twelths</td>
+    </tr>
+    <tr>
+      <td><code>.flex-3-vw</code></td>
+      <td>Three twelths</td>
+    </tr>
+    <tr>
+      <td><code>.flex-4-vw</code></td>
+      <td>Four twelths</td>
+    </tr>
+    <tr>
+      <td><code>.flex-5-vw</code></td>
+      <td>Five twelths</td>
+    </tr>
+    <tr>
+      <td><code>.flex-6-vw</code></td>
+      <td>Six twelths</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Sizing classes are also defined for each of the standard Bootstrap grid
+breakpoints, so you can override with a new size at higher resolutions.
+The table below shows the available classes, where <code>-n-</code> in the class
+name represents the values 1 through 6.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Size of Container</th>
+      <th>Width of Viewport</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Extra small devices</td>
+      <td><code>.flex-n</code></td>
+      <td><code>.flex-n-vw</code></td>
+    </tr>
+    <tr>
+      <td>Small devices</td>
+      <td><code>.flex-sm-n</code></td>
+      <td><code>.flex-sm-n-vw</code></td>
+    </tr>
+    <tr>
+      <td>Medium devices</td>
+      <td><code>.flex-md-n</code></td>
+      <td><code>.flex-md-n-vw</code></td>
+    </tr>
+    <tr>
+      <td>Large devices</td>
+      <td><code>.flex-lg-n</code></td>
+      <td><code>.flex-lg-n-vw</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can also apply standard CSS styles if fine grained control over the sizing
+behavior is required.</p>
+
+<div id="grid-wrapping"></div>
+
+<h3 id="wrapping-items">Wrapping Items</h3>
+
+<p>If you specify widths for items within a flex box, and those widths are more
+than the container width allows, then wrapping automatically occurs.</p>
+
+<div class="docs-example">
+  <div class="flex-box">
+    <div class="flex-content flex-4">1</div>
+    <div class="flex-content flex-4">2</div>
+    <div class="flex-content flex-4">3</div>
+    <div class="flex-content flex-4">4</div>
+    <div class="flex-content flex-4">5</div>
+  </div>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-4&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-4&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-4&quot;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-4&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content flex-4&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<p>Convenience classes are provided to allow the size to be specified once on the
+parent element instead of on each child.</p>
+
+<div class="docs-example">
+  <div class="flex-box flex-children-4">
+    <div class="flex-content">1</div>
+    <div class="flex-content">2</div>
+    <div class="flex-content">3</div>
+    <div class="flex-content">4</div>
+    <div class="flex-content">5</div>
+  </div>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-box flex-children-4&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;flex-content&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<p>These classes are also defined for each of the standard Bootstrap grid
+breakpoints, so you can override with a new size at higher resolutions.
+The table below shows the available classes, where <code>-n-</code> in the class
+name represents the values 1 through 6.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Size of Container</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Extra small devices</td>
+      <td><code>.flex-children</code></td>
+    </tr>
+    <tr>
+      <td>Small devices</td>
+      <td><code>.flex-children-sm-n</code></td>
+    </tr>
+    <tr>
+      <td>Medium devices</td>
+      <td><code>.flex-children-md-n</code></td>
+    </tr>
+    <tr>
+      <td>Large devices</td>
+      <td><code>.flex-children-lg-n</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="off-canvas">Off-Canvas</h2>
 
 <p>asdfaj skfjadsfjdfjfjfjjf  fd dfdfdf df</p>
 
-<h2 id="list">List</h2>
+<div id="list"></div>
 
-<p>asdfaj skfjadsfjdfjfjfjjf  fd dfdfdf df</p>
+<h2 id="flex-list">Flex List</h2>
+
+<p class="lead">The flex list component provides an easy way to create a list of items useful for layout in a sidebar or slim vertical areas.</p>
+
+<div id="list-basic"></div>
+
+<h3 id="basic-syntax">Basic Syntax</h3>
+<p>A flex list is defined by applying the <code>.flex-list</code> class to a <code>&lt;ul&gt;</code> element.
+Simple text and link items work in a flex list without any special consideration.
+For layout an item with a more sophisticated layout, the <code>.flex-list-item</code>
+class it applied to the element that requires flexible sizing.</p>
+
+<p>By default, children of an element with the <code>.flex-list-item</code> class will
+collapses to a small amount of space. Use the general purpose <code>.flex-grow</code>
+class to make the text take up as much space as possible.</p>
+
+<div class="docs-example">
+  <ul class="flex-list">
+    <li>
+      Text only
+    </li>
+    <li>
+      <a href="#">Link</a>
+    </li>
+    <li>
+      <a href="#" class="flex-list-item">
+        <span class="flex-grow">Link with end icon</span>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    Text only
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Link<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Link with end icon<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-chevron-right&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<div id="list-app-prepend"></div>
+
+<h2 id="appending--prepending-items">Appending / Prepending Items</h2>
+
+<p>You can put zero, one or more items before or after the item with the
+<code>.flex-grow</code> class assigned. Everything adjusts dynamically. Check out these
+examples.</p>
+
+<div class="docs-example">
+  <ul class="flex-list">
+    <li>
+      <a href="" class="flex-list-item">
+        <span class="glyphicon glyphicon-asterisk"></span>
+        <span class="flex-grow">Link with both icons</span>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </li>
+    <li>
+      <a href="" class="flex-list-item">
+        <span class="glyphicon glyphicon-comment"></span>
+        <span class="flex-grow">Another links with both icons and a lot of text causing wrapping across multiple lines</span>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </li>
+    <li>
+      <a href="" class="flex-list-item">
+        <span></span>
+        <span class="flex-grow">Indented without an icon</span>
+      </a>
+    </li>
+    <li>
+      <a href="" class="flex-list-item flex-list-indent">
+        <span class="flex-grow">Or you can indent with a class instead</span>
+      </a>
+    </li>
+    <li>
+      <a href="" class="flex-list-item flex-list-indent">
+        <span class="flex-grow">How about multiple trailing icons?</span>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <span class="glyphicon glyphicon-signal"></span>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-asterisk&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Link with both icons<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-chevron-right&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-comment&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Another links with both icons and a lot of text causing wrapping across multiple lines<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-chevron-right&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Indented without an icon<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;flex-list-item flex-list-indent&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Or you can indent using a class<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;flex-list-item flex-list-indent&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>How about multiple trailing icons?<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-list-alt&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-signal&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-chevron-right&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<div id="list-nesting"></div>
+
+<h2 id="nesting-1">Nesting</h2>
+
+<p>Use child lists to create simple hierarchies.</p>
+
+<div class="docs-example">
+  <ul class="flex-list">
+    <li>Child content can be indented
+      <ul class="flex-list-indent">
+        <li>The first item</li>
+        <li>Item number two</li>
+        <li>Last item</li>
+      </ul>
+    </li>
+    <li>
+      <span class="flex-list-item">
+        <span class="glyphicon glyphicon-tasks"></span>
+        <span class="flex-grow">This time with a start icon</span>
+      </span>
+      <ul class="flex-list-indent">
+        <li>The first item</li>
+        <li>Item number two</li>
+        <li>Last item</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li&gt;</span>Child content can be indented
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list-indent&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>The first item<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Item number two<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Last item<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-tasks&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>This time with a start icon<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list-indent&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>The first item<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Item number two<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Last item<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<div id="list-collapsible"></div>
+
+<h2 id="collapsible-children">Collapsible Children</h2>
+
+<p>Add a couple of lines of JavaScript to adjust the applied classes for an
+animated collapsible action. The <code>.flex-list-collapsible</code> identifies an element to
+be animated through a state change, and the <code>.flex-list-collapsed</code> is added
+when the element is collapsed.</p>
+
+<div class="docs-example">
+  <script>
+    $(function() {
+      $('.js-example-collapsible').on('click', function(e) {
+        e.preventDefault();
+        $(this).next().toggleClass('flex-list-collapsed');
+        // Also rotate the arrow for the example
+        $(this).find('.flex-grow').next().find('.glyphicon').css('transition', '0.5s')
+          .css('transform', $(this).next().hasClass('flex-list-collapsed') ? 'rotate(180deg)' : '');
+      });
+    })
+  </script>
+  <ul class="flex-list">
+    <li>Regular list item</li>
+    <li>
+      <a href="" class="flex-list-item js-example-collapsible">
+        <span class="flex-grow">Collapsible list item</span>
+        <span>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        </span>
+      </a>
+      <ul class="flex-list-collapsible">
+        <li>The first item</li>
+        <li>Item number two</li>
+        <li>Last item</li>
+      </ul>
+    </li>
+    <li>Regular list item</li>
+  </ul>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.js-example-collapsible&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">next</span><span class="p">().</span><span class="nx">toggleClass</span><span class="p">(</span><span class="s1">&#39;flex-list-collapsed&#39;</span><span class="p">);</span>
+      <span class="c1">// Also rotate the arrow for the example</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.flex-grow&#39;</span><span class="p">).</span><span class="nx">next</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.glyphicon&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;transition&#39;</span><span class="p">,</span> <span class="s1">&#39;0.5s&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">next</span><span class="p">().</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;flex-list-collapsed&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;rotate(180deg)&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li&gt;</span>Regular list item<span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;flex-list-item js-example-collapsible&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Collapsible list item<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-chevron-up&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list-collapsible&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li&gt;</span>The first item<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Item number two<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Last item<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>Regular list item<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<div id="list-widgets"></div>
+
+<h2 id="form-widgets">Form Widgets</h2>
+
+<p>HTML checkboxes and radio buttons can be converted can be integrated
+nicely into the flex list component by using the <code>.check</code> class and a small
+change to the markup. They work entirely without JavaScript.</p>
+
+<p>Radio button lists can be presented in the main list or in a child list.</p>
+
+<div class="docs-example">
+  <ul class="flex-list">
+    <li class="flex-list-item">
+      <span class="flex-grow">Apples</span>
+      <span class="switch">
+        <input type="radio" name="fruit" id="fruit-apples" checked="" />
+        <label for="fruit-apples"></label>
+      </span>
+    </li>
+    <li class="flex-list-item">
+      <span class="flex-grow">Bananas</span>
+      <span class="switch">
+        <input type="radio" name="fruit" id="fruit-bananas" />
+        <label for="fruit-bananas"></label>
+      </span>
+    </li>
+    <li>Preferred color
+      <ul class="flex-list-indent">
+        <li class="flex-list-item">
+          <span class="flex-grow">Red</span>
+          <span class="switch">
+            <input type="radio" name="color" id="color-red" checked="" />
+            <label for="color-red"></label>
+          </span>
+        </li>
+        <li class="flex-list-item">
+          <span class="flex-grow">Blue</span>
+          <span class="switch">
+            <input type="radio" name="color" id="color-blue" />
+            <label for="color-blue"></label>
+          </span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Apples<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;switch&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">name=</span><span class="s">&quot;fruit&quot;</span> <span class="na">id=</span><span class="s">&quot;fruit-apples&quot;</span> <span class="na">checked=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;fruit-apples&quot;</span><span class="nt">&gt;&lt;/label&gt;</span>
+    <span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Bananas<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;switch&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">name=</span><span class="s">&quot;fruit&quot;</span> <span class="na">id=</span><span class="s">&quot;fruit-bananas&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;fruit-bananas&quot;</span><span class="nt">&gt;&lt;/label&gt;</span>
+    <span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>Preferred color
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list-indent&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Red<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;switch&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">name=</span><span class="s">&quot;color&quot;</span> <span class="na">id=</span><span class="s">&quot;color-red&quot;</span> <span class="na">checked=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;color-red&quot;</span><span class="nt">&gt;&lt;/label&gt;</span>
+        <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Blue<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;switch&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">name=</span><span class="s">&quot;color&quot;</span> <span class="na">id=</span><span class="s">&quot;color-blue&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;color-blue&quot;</span><span class="nt">&gt;&lt;/label&gt;</span>
+        <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<p>Checkboxes look great in the flex list component.</p>
+
+<div class="docs-example">
+  <ul class="flex-list">
+    <li>
+      <span class="flex-list-item">
+        <span class="flex-grow">Toggle switch</span>
+        <span class="switch">
+          <input type="checkbox" id="switch-1" />
+          <label for="switch-1"></label>
+        </span>
+      </span>
+    </li>
+    <li>
+      <span class="flex-list-item">
+        <span class="flex-grow">Another toggle switch</span>
+        <span class="switch">
+          <input type="checkbox" id="switch-2" checked="" />
+          <label for="switch-2"></label>
+        </span>
+      </span>
+    </li>
+  </ul>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;flex-list&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Toggle switch<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;switch&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;switch-1&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;switch-1&quot;</span><span class="nt">&gt;&lt;/label&gt;</span>
+        <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-list-item&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;flex-grow&quot;</span><span class="nt">&gt;</span>Another toggle switch<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;switch&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;switch-2&quot;</span> <span class="na">checked</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;switch-2&quot;</span><span class="nt">&gt;&lt;/label&gt;</span>
+        <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<p>To ensure that switch work correctly, you must do the following</p>
+
+<ul>
+  <li>Wrap the <code>&lt;input&gt;</code> with the <code>.switch</code> class (we use a <code>&lt;span&gt;</code> element)</li>
+  <li>Provide an id for the <code>&lt;input&gt;</code></li>
+  <li>Add the <code>&lt;label&gt;</code> immediately <strong>after</strong> the input and set its <code>for</code> attribute to the id of the input</li>
+</ul>
 
   </div>
 </div>

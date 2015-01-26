@@ -5,33 +5,39 @@ permalink: /getting-started/
 slug: getting-started
 ---
 
-## <a name="download"></a>Download
+<div id="download"></div>
+
+## Download
+
 The Bootstrap App Framework has a few easy ways to quickly get started depending
 on how you want to use it within your project:
 {: .lead }
+
+<a href="{{ site.dist }}/css/bootstrap-app.css" class="btn btn-lg btn-primary">Download CSS</a>
+- or -
+<a href="{{ site.dist }}/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download Less Source</a>
 
 ### Download CSS
 
 This is super easy. Just download the single CSS file, reference it in your
 markup, and you're done.
 
-<a href="{{ site.dist }}/css/bootstrap-app.css" class="btn btn-lg btn-primary">Download CSS</a>
 
 ### Download Less Source
 
 Just like Bootstrap, the Bootstrap App Framework is built with Less, a
 pre-processor for CSS.
 
-<a href="{{ site.dist }}/archive/bootstrap-app.zip" class="btn btn-lg btn-primary">Download Less</a>
-
 The `bootstrap-app.less` file imports all the other Less files for generating
 the `bootstrap-app.css` file.
 
-If you are  compiling Bootstrap from its Less file, then you should copy the
+If you are compiling Bootstrap from its Less file, then you should copy the
 contents of `bootstrap-app.less` into one of your existing Less file, excluding
 the `bootstrap-variable.less` file, since those will already be defined.
 
-## <a name="using-without-bootstrap"></a>Using Without Bootstrap
+<div id="using-without-bootstrap"></div>
+
+## Using Without Bootstrap
 
 Bootstrap App follows the conventions of Bootstrap, references Bootstrap Less
 variables, and includes styling where necessary to ensure Bootstrap App
@@ -40,7 +46,9 @@ Bootstrap App is entirely optional. Regardless of whether you are downloading
 the CSS or the Less source files, Bootstrap App will work correctly even when
 Bootstrap is not included.
 
-## <a name="browser-compat"></a>Browser Compatibility
+<div id="browser-compat"></div>
+
+## Browser Compatibility
 
 Bootstrap App uses CSS3 Flex Box capabilities to enable fine grained control
 over the layout of items within a container. Since Flex Box is a relatively new

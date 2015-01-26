@@ -4,7 +4,7 @@ email: gxclarke@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   The Bootstrap App Framework: Build responsive web-based
   applications using Bootstrap.
-baseurl: "" # the subpath of your site, e.g. /blog/
+baseurl: "/bootstrap-app/"
 url: "http://getbootstrapapp.com" # the base hostname & protocol for your site
 dist: "https://github.com/gxclarke/bootstrap-app/tree/master/dist"
 twitter_username: gxclarke

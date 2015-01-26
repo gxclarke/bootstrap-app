@@ -15,12 +15,53 @@
   <link href="/css/pygments-manni.css" rel="stylesheet">
   <link href="/css/bootstrap-app.css" rel="stylesheet">
 
-  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
+  
   <link rel="stylesheet" href="/css/docs.css">
-  <link rel="canonical" href="http://getbootstrapapp.com/">
-  <link rel="alternate" type="application/rss+xml" title="Bootstrap App Framework" href="http://getbootstrapapp.com/feed.xml" />
+  <link rel="canonical" href="http://getbootstrapapp.com//">
+  <link rel="alternate" type="application/rss+xml" title="Bootstrap App Framework" href="http://getbootstrapapp.com//feed.xml" />
+
+  <script>
+  $(function () {
+    function isScrolledIntoView(elem) {
+      var docViewTop = $(window).scrollTop();
+      var docViewBottom = docViewTop + $(window).height();
+
+      var elemTop = $(elem).offset().top;
+      var elemBottom = elemTop + $(elem).height();
+
+      return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+
+    var $scrollContainer = $('.docs-content').closest('.flex-content');
+
+    $scrollContainer.scroll(function () {
+      var scrollHeight = $(this).height();
+      var $a = $('.docs-sidebar a');
+      $a.closest('li').removeClass('active');
+
+      var match = null;
+      $a.each(function () {
+        var $target = $($(this).attr('href'));
+        var elemTop = $target.offset().top;
+        var elemBottom = elemTop + $target.height();
+        if (elemTop >= 0 && elemBottom <= scrollHeight) {
+          match = this;
+          return false;
+        }
+        else if (elemBottom > scrollHeight) {
+          return false;
+        }
+        else
+          match = this;
+      });
+      if (match)
+        $(match).closest('li').addClass('active');
+    })
+  })
+  </script>
 </head>
 
 
@@ -52,48 +93,38 @@
 
         </div>
         <div class="flex-box">
-          <div class="container">
-  <div class="jumbotron bg-primary text-center">
+          <div style="background: linear-gradient(to bottom, #ddd 0%, #fff 100%); width: 100%; padding-top: 3rem;">
+  <div class="container text-center">
     <h1>Bootstrap App Framework</h1>
     <p class="lead">Build Responsive Web-Based Applications using Bootstrap</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
     <p><a href="/getting-started" class="btn btn-success btn-lg">Get Started</a></p>
     <p>&nbsp;</p>
     <div class="row">
       <div class="col-md-4">
-        <div class="panel">
-          <div class="panel-heading bg-info">
-            <h3 class="panel-title">
-              Designed for Bootstrap 3
-            </h3>
-          </div>
-          <div class="panel-body">
-            100% compatible with Bootstrap. Follows Bootstrap paradigms and works alongside Bootstrap to provide new capabilities useful for building web-based application user interfaces.
-          </div>
-        </div>
+        <h3>
+          Designed for Bootstrap 3
+        </h3>
+        <p>
+          100% compatible with Bootstrap. Follows Bootstrap paradigms and works alongside Bootstrap to provide new capabilities useful for building web-based application user interfaces.
+        </p>
       </div>
       <div class="col-md-4">
-        <div class="panel">
-          <div class="panel-heading bg-danger">
-            <h3 class="panel-title">
-              Powered By CSS3 Flex Box
-            </h3>
-          </div>
-          <div class="panel-body">
-            Currently, a W3C last-call working draft. Supported by modern browsers (IE 10 or higher required). Flex Box enables fine grained control over the layout of items within a container.
-          </div>
-        </div>
+        <h3>
+          Powered By CSS3 Flex Box
+        </h3>
+        <p>
+          Currently, a W3C last-call working draft. Supported by modern browsers (IE 10 or higher required). Flex Box enables fine grained control over the layout of items within a container.
+        </p>
       </div>
       <div class="col-md-4">
-        <div class="panel">
-          <div class="panel-heading bg-success">
-            <h3 class="panel-title">
-              User Interface Components
-            </h3>
-          </div>
-          <div class="panel-body">
-            The Bootstrap App Framework consists of user interface components and utilities, such as advanced grid layout, off-screen panels, and navigation lists. All with full-responsive support.
-          </div>
-        </div>
+        <h3>
+          User Interface Components
+        </h3>
+        <p>
+          The Bootstrap App Framework consists of user interface components and utilities, such as advanced grid layout, off-screen panels, and navigation lists. All with full-responsive support.
+        </p>
       </div>
     </div>
   </div>
